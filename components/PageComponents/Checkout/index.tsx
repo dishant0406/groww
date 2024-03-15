@@ -204,7 +204,7 @@ const CheckoutComponent = (props: Props) => {
               placeHolder='Enter Phone Number'
               name='phoneNumber'
               setVerified={(value) => handleSetVerified('phoneNumber', value)}
-              verificationRegex={/^[0-9]*$/}
+              verificationRegex={/^[6789]\d{9}$/}
               label='Phone Number'
               {...valueObj('phoneNumber')}
               type='number'
