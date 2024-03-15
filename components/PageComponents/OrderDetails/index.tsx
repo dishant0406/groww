@@ -9,11 +9,9 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
-type Props = {
-  store: StoreData
-}
 
-const OrderDetails = ({ store }: Props) => {
+
+const OrderDetails = () => {
   const { setStore, store: data } = useStore()
   const { removeAllProducts } = useStoreActions()
   const router = useRouter()
@@ -23,6 +21,7 @@ const OrderDetails = ({ store }: Props) => {
       setLoading(true)
       const data: StoreData = await fetch('https://groww-intern-assignment.vercel.app/v1/api/order-details').then(e => e.json())
       setStore(data)
+      localStorage.setItem('store', JSON.stringify(data))
     } catch (e) {
       toast.error('Failed to refresh data, please try again later', {
         position: 'top-right',
@@ -37,7 +36,12 @@ const OrderDetails = ({ store }: Props) => {
   const disabled = data?.products?.length === 0 || !data?.products || Number(totalPrice) <= 100
 
   useEffect(() => {
-    setStore(store)
+    const localData = localStorage.getItem('store')
+    if (localData) {
+      setStore(JSON.parse(localData))
+    } else {
+      handleRefreshData()
+    }
   }, [])
 
   return (
@@ -73,7 +77,9 @@ const OrderDetails = ({ store }: Props) => {
           {
             data?.products?.length === 0 && (
               <p className='w-ful text-center font-medium text-[4vw] md:text-[1.5vw] my-[5vh] '>
-                No products in your cart
+                {
+                  loading ? 'Loading products...' : 'No products in cart'
+                }
               </p>
             )
           }
