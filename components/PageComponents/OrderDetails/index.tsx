@@ -4,7 +4,7 @@ import Button from '@/components/Micro/Button'
 import ProductItem from '@/components/Micro/ProductItem'
 import SideInfo from '@/components/Micro/SideInfo'
 import { useStore, useStoreActions } from '@/lib/Store/useStore'
-import { Trash } from 'lucide-react'
+import { RefreshCcw } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
@@ -17,6 +17,21 @@ const OrderDetails = ({ store }: Props) => {
   const { setStore, store: data } = useStore()
   const { removeAllProducts } = useStoreActions()
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const handleRefreshData = async () => {
+    try {
+      setLoading(true)
+      const data: StoreData = await fetch('https://groww-intern-assignment.vercel.app/v1/api/order-details').then(e => e.json())
+      setStore(data)
+    } catch (e) {
+      toast.error('Failed to refresh data, please try again later', {
+        position: 'top-right',
+        important: true
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const totalPrice = data?.products?.reduce((acc, product) => acc + product.price * product.quantity, 0).toFixed(2)
   const disabled = data?.products?.length === 0 || !data?.products || Number(totalPrice) <= 100
@@ -27,6 +42,11 @@ const OrderDetails = ({ store }: Props) => {
 
   return (
     <div className='w-full px-[5%]'>
+      <button onClick={handleRefreshData} className='p-[0.8rem] fixed top-[2vh] right-[2vw] bg-pri text-white rounded-full'>
+        <RefreshCcw className={
+          loading ? 'animate-spin' : ''
+        } />
+      </button>
       <p className='w-full font-medium text-[5vw] md:text-[2vw] mt-[5vh] '>
         Cart
       </p>
@@ -52,7 +72,7 @@ const OrderDetails = ({ store }: Props) => {
           </div>
           {
             data?.products?.length === 0 && (
-              <p className='w-ful text-center font-medium text-[1.5vw] my-[5vh] '>
+              <p className='w-ful text-center font-medium text-[4vw] md:text-[1.5vw] my-[5vh] '>
                 No products in your cart
               </p>
             )
