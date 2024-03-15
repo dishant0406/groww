@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Groww Next.js Project
+
+This repository contains the source code for the Groww Assignme nt web application built with Next.js. It's structured to provide a seamless development experience with clear separation of components and pages.
+
+## Project Structure
+
+Below is the main folder structure and their contents:
+
+- `.next/`: Auto-generated folder for Next.js build output.
+- `app/`: Contains the main pages and components for the application.
+  - `checkout/`: Components and logic for the checkout process.
+    - `page.tsx`: Checkout page component.
+  - `status/`: Components for displaying status updates.
+    - `page.tsx`: Status page component.
+  - `favicon.ico`: The favicon for the web app.
+  - `globals.css`: Global CSS styles.
+  - `layout.tsx`: The main layout component.
+  - `page.tsx`: The entry point for a generic page.
+- `components/`: Reusable components.
+  - `Micro/`: Smaller components like buttons and inputs.
+    - `Button.tsx`: Button component.
+    - `Input.tsx`: Input component.
+    - `ProductItem.tsx`: Product item display component.
+    - `Radio.tsx`: Custom radio button component.
+    - `SideInfo.tsx`: Side information panel component.
+  - `PageComponents/`: Components specific to pages.
+    - `Checkout/`: Checkout related components.
+      - `index.tsx`: Aggregated exports for checkout components.
+    - `OrderDetails/`: Order details display components.
+      - `index.tsx`: Aggregated exports for order detail components.
+    - `Status/`: Status update related components.
+      - `index.tsx`: Aggregated exports for status components.
+- `ui/`: UI related utilities and components.
+- `lib/`: Library code that provides utility functions and helpers.
+  - `Store/`: State management using stores with Zustand
+    - `useStore.ts`: A custom hook for store usage.
+  - `utils.ts`: Utility functions.
+- `node_modules/`: Node.js modules.
+- `public/`: Static files accessible by the public.
+- `.eslintrc.json`: ESLint configuration file.
+- `.gitignore`: Specifies intentionally untracked files to ignore.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (LTS)
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository
+   ```sh
+   git clone https://github.com/dishant0406/groww
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Install Dependency
+   ```sh
+   npm install
 
-## Learn More
+2. Run Dev Server
+   ```sh
+   npm run dev
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
