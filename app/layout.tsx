@@ -12,6 +12,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Groww Checkout",
   description: "Checkout Page for Groww",
+  icons: ['/favicon.ico']
 };
 
 export default function RootLayout({
