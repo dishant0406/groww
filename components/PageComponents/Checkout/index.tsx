@@ -299,10 +299,9 @@ const CheckoutComponent = (props: Props) => {
           <div className='w-full mt-[5vh] flex-col flex gap-[3vh]'>
             {
               paymentType.map((payment) => {
-                if (store.paymentMethods.indexOf(payment.value) === -1) {
-                  return null
+                if (store.paymentMethods.indexOf(payment.value as 'CARDS' | 'UPI') === -1) {
+                  return
                 }
-
                 return (
                   <Radio
                     key={payment.title}

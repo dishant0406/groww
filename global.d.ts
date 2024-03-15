@@ -6,7 +6,7 @@ type Product = {
   quantity: number;
 };
 
-type PaymentMethod = ;
+type PaymentMethod = 'UPI' | 'CARDS'
 
 type StoreData = {
   products: Product[];
