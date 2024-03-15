@@ -31,7 +31,14 @@ export const useStoreActions = create<{
     const store = useStore.getState().store;
     const product = store.products.find((product)=>product.id===id);
     if(product){
-      product.quantity--;
+      if(product.quantity>1){
+        product.quantity--;
+      }else{
+       const index = store.products.findIndex((product)=>product.id===id);
+        if(index!==-1){
+          store.products.splice(index,1);
+        }
+      }
       useStore.setState({store});
     }
     useStore.setState({store});
