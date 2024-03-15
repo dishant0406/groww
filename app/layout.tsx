@@ -21,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className={`bg-[#fafafa] ${poppins.className}`}>
         <div className='w-full mt-[3vh] flex items-center justify-center'>
           <Image src='/logo.png' alt='Groww Logo' className={
