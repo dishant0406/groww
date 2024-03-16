@@ -1,5 +1,6 @@
 import { useStoreActions } from '@/lib/Store/useStore'
 import { Trash } from 'lucide-react'
+import Image from 'next/image'
 import React from 'react'
 
 type Props = {
@@ -14,9 +15,9 @@ const ProductItem = ({
   return (
     <div key={product.id} className='w-full md:gap-0 gap-[2vh] md:flex-row flex-col flex border rounded-xl p-[1rem]'>
       <div className='flex w-full md:w-[60%] items-center gap-[1rem]'>
-        <img src={
+        <Image src={
           product.image
-        } alt='Product 1' className={
+        } alt={product.title} className={
           'w-[20%] h-[7vh] object-contain '
         } width={100} height={100} />
         <div className='flex w-[80%] gap-[0.5rem] flex-col justify-between'>
